@@ -16,8 +16,8 @@ class smsChannel
         $rcpt_nm = $data['phone'];
         $param = array
         (
-            'uname'=>'mehdi-2960',
-            'pass'=>'mehdi8991',
+            'uname'=>'mehdi',
+            'pass'=>'mehdiABC!!',
             'from'=>'3000505',
             'message'=>$data['text'],
             'to'=>json_encode($rcpt_nm),
