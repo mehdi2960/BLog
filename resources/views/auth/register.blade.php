@@ -37,16 +37,6 @@
                         </span>
                             @enderror
                         </div>
-                        <div class="form-group">
-                            <label for="cellphone">شماره همراه:</label>
-                            <input id="cellphone" type="text" class="form-control @error('cellphone') is-invalid @enderror" name="cellphone" value="{{ old('cellphone') }}">
-
-                            @error('cellphone')
-                            <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                           </span>
-                            @enderror
-                        </div>
 
                         <div class="form-group">
                             <label for="password">رمز عبور:</label>

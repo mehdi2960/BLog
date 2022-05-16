@@ -14,4 +14,5 @@
     <link href="/front/assets/css/plugins/owl.carousel.css" rel="stylesheet" />
     <link href="/front/assets/css/plugins/owl.theme.default.min.css" rel="stylesheet" />
     <link href="/front/assets/css/main.css" rel="stylesheet" />
+    <script src="{{ asset('js/app.js') }}"></script>
 </head>

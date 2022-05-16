@@ -87,6 +87,7 @@
 <!-- Active JS -->
 <script src="/admin/js/default-assets/active.js"></script>
 {{--@include('sweet::alert')--}}
+@include('sweet::alert')
 
 </body>
 

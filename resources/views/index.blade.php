@@ -8,7 +8,7 @@
                 <div class="col-12">
                     <section class="banner">
                         <a href="#">
-                            <img src="front/assets/img/banner/banner.jpg" alt="">
+                            <img src="/front/assets/img/banner/banner.jpg" alt="">
                         </a>
                     </section>
                 </div>
@@ -20,7 +20,7 @@
                     <div class="sidebar-inner default">
                         <div class="widget-banner widget card">
                             <a href="#" target="_top">
-                                <img class="img-fluid" src="front/assets/img/banner/1455.jpg" alt="">
+                                <img class="img-fluid" src="/front/assets/img/banner/1455.jpg" alt="">
                             </a>
                         </div>
                         <div class="widget-services widget card">

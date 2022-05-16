@@ -1,5 +1,7 @@
 window._ = require('lodash');
 
+require("sweetalert");
+
 try {
     require('bootstrap');
 } catch (e) {}

@@ -4402,7 +4402,7 @@ main.profile-user-page .profile-menu-items li a i {
 
 main.profile-user-page .profile-menu-items li a.active,
 main.profile-user-page .profile-menu-items li a:hover {
-    background-color: #f6ffff;
+    /*background-color: #f6ffff;*/
     color: #009ec9;
 }
 
@@ -4421,7 +4421,7 @@ main.profile-user-page .content-section {
 }
 
 main.profile-user-page .content-section p {
-    font-size: 18px;
+    font-size: 13px;
     line-height: 30px;
     color: #939393;
 }

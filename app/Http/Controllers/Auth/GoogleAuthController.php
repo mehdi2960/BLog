@@ -10,32 +10,35 @@ use Laravel\Socialite\Facades\Socialite;
 
 class GoogleAuthController extends Controller
 {
+    use TwoFactorType;
+
     public function redirect()
     {
         return Socialite::driver('google')->redirect();
     }
-    public function callback()
+
+    public function callback(Request $request)
     {
         try {
-            $googleUser=Socialite::driver('google')->stateless()->user();
-            $user=User::query()->where('email',$googleUser->email)->first();
 
-            if ($user){
-                auth()->loginUsingId($user->id);
-            }else{
-                User::query()->create([
-                    'name'=>$googleUser->name,
-                    'email'=>$googleUser->email,
-                    'password'=>bcrypt(\Str::random(16)),
+            $googleUser = Socialite::driver('google')->stateless()->user();
+            $user = User::query()->where('email', $googleUser->email)->first();
+
+            if (!$user) {
+
+                $user = User::query()->create([
+                    'name' => $googleUser->name,
+                    'email' => $googleUser->email,
+                    'password' => bcrypt(\Str::random(16)),
                 ]);
-
-                auth()->loginUsingId($user->id);
             }
+            auth()->loginUsingId($user->id);
+            //TODO Sweet Alert
+            return $this->loggedIn($request, $user) ?: redirect(route('login'));
 
-            return redirect('/');
-
-        }catch (\Exception $e){
-            return "error";
+        } catch (\Exception $e) {
+            alert()->error('در ورود به سایت خطایی رخ داد', 'خطا رخ داد')->persistent('متوجه شدم');
+            return redirect(route('login'));
         }
     }
 }

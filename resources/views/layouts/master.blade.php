@@ -5,18 +5,15 @@
 
 <body class="index-page sidebar-collapse">
 
-    <!-- responsive-header -->
-    @include('layouts.navbar')
-    <!-- responsive-header -->
-    @include('layouts.main-header')
-    <div class="wrapper default">
+<!-- responsive-header -->
+@include('layouts.navbar')
+<!-- responsive-header -->
+@include('layouts.main-header')
+<div class="wrapper default">
+    @yield('content')
+    @include('layouts.footer')
+</div>
 
-        <main class="main default">
-           @yield('content')
-        </main>
-@include('layouts.footer')
-    </div>
-
+@include('sweet::alert')
 </body>
-
 </html>
