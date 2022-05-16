@@ -22,8 +22,7 @@ trait TwoFactorType
 
             if ($user->two_factor_type == 'sms') {
                 $code = ActiveCode::generateCode($user);
-                //TODO Send SMS
-                $request->session()->push('auth.using_sms', 'true');
+                $request->session()->push('auth.using_sms','true');
             }
             return redirect(route('auth.token'));
         }

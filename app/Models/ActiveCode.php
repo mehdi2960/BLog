@@ -13,9 +13,9 @@ class ActiveCode extends Model
 
     public $timestamps = false;
 
-    protected $table='active_code';
+    protected $table = 'active_code';
 
-    public function scopeGenerateCode($query,$user)
+    public function scopeGenerateCode($query, $user)
     {
         $user->activecode()->delete();
         do {
@@ -31,17 +31,17 @@ class ActiveCode extends Model
 
     private function checkCodeIsUnique($user, int $code)
     {
-        return !! $user->activeCode()->whereCode($code)->first();
+        return !!$user->activeCode()->whereCode($code)->first();
     }
 
     private function getAliveCodeForUser($user)
     {
-        return $user->activeCode()->where('expired_at','>',now())->first();
+        return $user->activeCode()->where('expired_at', '>', now())->first();
     }
 
-    public function scopeVerifyCode($query,$code,$user)
+    public function scopeVerifyCode($query, $code, $user)
     {
-        return !! $user->activeCode()->whereCode($code)->where('expired_at','>',now())->first();
+        return !!$user->activeCode()->whereCode($code)->where('expired_at', '>', now())->first();
     }
 
     public function user()

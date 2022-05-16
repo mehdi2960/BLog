@@ -35,7 +35,7 @@ class ProfileController extends Controller
             if ($request->user()->phone_number !== $data['phone']){
                 $code = ActiveCode::generateCode($request->user());
                 $request->session()->flash('phone',$data['phone']);
-//                $request->user()->notify(new ActiveCodeNotification($code,$data['phone']));
+                $request->user()->notify(new ActiveCodeNotification($code,$data['phone']));
                 return redirect(route('phone.verify'));
             }
             //code Generate
