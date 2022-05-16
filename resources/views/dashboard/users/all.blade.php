@@ -51,9 +51,9 @@
                                                     <span class="badge badge-danger">ندارد</span>
                                                 @endif
                                             </td>
-                                            <td>
-                                                <a href="" class="btn btn-primary btn-sm">ویرایش</a>
-                                                <form action="" method="post">
+                                            <td style="display: flex !important;">
+                                                <a href="{{route('users.edit',['user'=>$user->id])}}" class="btn btn-primary btn-sm">ویرایش</a>
+                                                <form action="{{route('users.destroy',['user'=>$user->id])}}" method="post">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="btn btn-danger btn-sm">حذف</button>

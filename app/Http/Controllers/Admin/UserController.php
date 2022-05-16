@@ -12,8 +12,8 @@ class UserController extends Controller
 
     public function index()
     {
-        $users=User::all();
-       return view('dashboard.users.all',compact('users'));
+        $users = User::all();
+        return view('dashboard.users.all', compact('users'));
     }
 
 
@@ -25,13 +25,13 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-       $request->validate([
-           'name'=>'required|string',
-           'email'=>'required|unique:users,email|string',
-           'password'=>'required|string|min:8|confirmed',
-       ]);
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|unique:users,email|string',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
 
-        $request['password']=Hash::make($request['password']);
+        $request['password'] = Hash::make($request['password']);
         User::create($request->all());
 
         return back();
@@ -43,19 +43,34 @@ class UserController extends Controller
         //
     }
 
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        return view('dashboard.users.edit', compact('user'));
     }
 
 
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $date = $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|unique:users,email|string',
+        ]);
+
+        if ($request['password']) {
+            $request->validate([
+                'password' => ['required', 'string', 'min:8', 'confirmed']
+            ]);
+            $date['password'] = Hash::make($request['password']);
+        }
+
+        $user->update($date);
+
+        return back();
     }
 
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return back();
     }
 }
