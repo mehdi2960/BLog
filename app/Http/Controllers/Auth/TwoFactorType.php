@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 
 
 use App\Models\ActiveCode;
+use App\Notifications\LoginNotification;
 use Illuminate\Http\Request;
 
 trait TwoFactorType
@@ -26,6 +27,8 @@ trait TwoFactorType
             }
             return redirect(route('auth.token'));
         }
+
+        $user->notify(new LoginNotification());
 
         return false;
     }
