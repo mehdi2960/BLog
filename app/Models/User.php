@@ -53,4 +53,13 @@ class User extends Authenticatable
     {
         return $this->two_factor_type !== 'off';
     }
+
+    public function isAdmin()
+    {
+        return $this->is_admin;
+    }
+    public function isOperator()
+    {
+        return $this->is_operator;
+    }
 }

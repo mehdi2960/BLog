@@ -50,9 +50,10 @@ Route::prefix('profile')->group(function () {
 });
 
 //Admin Panel
-Route::prefix('dashboard')->group(function () {
-    Route::get('/', [\App\Http\Controllers\Admin\HomeController::class, 'index']);
-});
+
+Route::get('/dashboard', function () {
+    return view('dashboard.home');
+})->name('dashboard');
 
 Auth::routes();
 
