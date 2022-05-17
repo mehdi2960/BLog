@@ -15,13 +15,13 @@
             <nav>
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="{{ request()->is('dashboard') ? 'active' : '' }}"><a href="/dashboard"><i class="zmdi zmdi-view-dashboard"></i><span>داشبورد</span></a></li>
-{{--                    <li class="treeview @php if((request()->is('dashboard/products')) || (request()->is('dashboard/products/create'))) { echo 'active';} @endphp">--}}
-{{--                        <a href="javascript:void(0)"><i class="zmdi zmdi-account"></i> <span>مدیریت محصولات</span> <i class="fa fa-angle-left"></i></a>--}}
-{{--                        <ul class="treeview-menu">--}}
-{{--                            <li><a href="{{ route('products.index') }}" style="{{ request()->is('dashboard/products') ? 'color:blue' : '' }}">لیست محصولات</a></li>--}}
-{{--                            <li><a href="{{ route('products.create') }}" style="{{ request()->is('dashboard/products/create') ? 'color:blue' : '' }}">افزودن محصول</a></li>--}}
-{{--                        </ul>--}}
-{{--                    </li>--}}
+                    <li class="treeview @php if((request()->is('dashboard/products')) || (request()->is('dashboard/products/create'))) { echo 'active';} @endphp">
+                        <a href="javascript:void(0)"><i class="zmdi zmdi-account"></i> <span>مدیریت محصولات</span> <i class="fa fa-angle-left"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{ route('products.index') }}" style="{{ request()->is('dashboard/products') ? 'color:blue' : '' }}">لیست محصولات</a></li>
+                            <li><a href="{{ route('products.create') }}" style="{{ request()->is('dashboard/products/create') ? 'color:blue' : '' }}">افزودن محصول</a></li>
+                        </ul>
+                    </li>
                     <li class="treeview @php if((request()->is('dashboard/users')) || (request()->is('dashboard/users/create'))) { echo 'active';} @endphp">
                         <a href="javascript:void(0)"><i class="zmdi zmdi-account"></i> <span>مدیریت کاربران</span> <i class="fa fa-angle-left"></i></a>
                         <ul class="treeview-menu">
