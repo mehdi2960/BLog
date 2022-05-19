@@ -62,4 +62,9 @@ class User extends Authenticatable
     {
         return $this->is_operator;
     }
+
+    public function comments()
+    {
+        return $this->belongsToMany(Comment::class);
+    }
 }
