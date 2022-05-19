@@ -1,4 +1,3 @@
-
 <footer class="main-footer default">
     <div class="back-to-top">
         <a href="#"><span class="icon"><i class="now-ui-icons arrows-1_minimal-up"></i></span> <span>بازگشت به

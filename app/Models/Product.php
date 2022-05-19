@@ -22,4 +22,9 @@ class Product extends Model
     {
         return $this->hasOne(Discount::class);
     }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class,'commentable');
+    }
 }

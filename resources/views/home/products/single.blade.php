@@ -747,9 +747,13 @@
                                                     افزودن نظر
                                                     <span>نظر خود را در مورد محصول مطرح نمایید</span>
                                                 </h2>
-                                                <form action="" class="comment">
-                                                    <textarea class="form-control" placeholder="نظر" rows="5"></textarea>
-                                                    <button class="btn btn-default">ارسال نظر</button>
+                                                <form action="{{ route('send.comment') }}" method="post" class="comment">
+                                                    @CSRF
+                                                    <input type="hidden" name="commentable_id" value="{{ $product->id }}">
+                                                    <input type="hidden" name="commentable_type" value="{{ get_class($product) }}">
+                                                    <input type="hidden" value="0" name="parent_id">
+                                                    <textarea class="form-control" placeholder="نظر" rows="5" name="text"></textarea>
+                                                    <button class="btn btn-default" type="submit">ارسال نظر</button>
                                                 </form>
                                             </article>
                                         </div>

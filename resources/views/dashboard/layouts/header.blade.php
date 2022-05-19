@@ -13,5 +13,5 @@
     <link rel="stylesheet" href="/admin/css/default-assets/notification.css">
 
     <link rel="stylesheet" href="/admin/style.css">
-
+    <script src="{{ asset('js/app.js') }}"></script>
 </head>

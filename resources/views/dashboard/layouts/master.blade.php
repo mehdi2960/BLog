@@ -3,6 +3,7 @@
 
 @include('dashboard.layouts.header')
 <body>
+@include('sweet::alert')
 <!-- Preloader -->
 @include('dashboard.layouts.preloader')
 <!-- Preloader -->

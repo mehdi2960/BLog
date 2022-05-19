@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Auth\AuthTokenController;
 use App\Http\Controllers\Auth\GoogleAuthController;
+use App\Http\Controllers\Home\CommentController;
+use App\Http\Controllers\Home\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\Profile\ProfileController;
@@ -24,8 +26,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index']);
 
 //Products Show
-Route::get('/products', [\App\Http\Controllers\Home\ProductController::class, 'index'])->name('products.show');
-Route::get('/products/{product}', [\App\Http\Controllers\Home\ProductController::class, 'singleProduct'])->name('products.single');
+Route::get('/products', [ProductController::class, 'index'])->name('products.show');
+Route::get('/products/{product}', [ProductController::class, 'singleProduct'])->name('products.single');
+Route::post('/product/comment', [CommentController::class, 'sendComment'])->name('send.comment');
 
 //Route::get('/', function (){
 //    return \auth()->user()->activeCode()->create([
@@ -58,7 +61,6 @@ Route::prefix('profile')->group(function () {
 Route::get('/dashboard', function () {
     return view('dashboard.home');
 })->name('dashboard');
-
 
 Route::prefix('dashboard')->group(function (){
     Route::resource('/users','Admin\UserController');
