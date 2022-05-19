@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Auth\AuthTokenController;
 use App\Http\Controllers\Auth\GoogleAuthController;
 use App\Http\Controllers\HomeController;
@@ -21,6 +22,10 @@ use Illuminate\Support\Facades\Route;
 
 //Front
 Route::get('/', [HomeController::class, 'index']);
+
+//Products Show
+Route::get('/products', [\App\Http\Controllers\Home\ProductController::class, 'index'])->name('products.show');
+Route::get('/products/{product}', [\App\Http\Controllers\Home\ProductController::class, 'singleProduct'])->name('products.single');
 
 //Route::get('/', function (){
 //    return \auth()->user()->activeCode()->create([
@@ -58,6 +63,7 @@ Route::get('/dashboard', function () {
 Route::prefix('dashboard')->group(function (){
     Route::resource('/users','Admin\UserController');
     Route::resource('/products','Admin\ProductController');
+    Route::resource('/product.discount','admin\DiscountController');
 });
 Auth::routes();
 

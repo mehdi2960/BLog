@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -39,9 +40,13 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $path = $request->file('image')->storeAs(
+            'public/image-product',$request->file('image')->getClientOriginalName()
+        );
         $request->validate([
             'title' => 'required|string',
             'text' => 'required|string',
+            'image' => 'required|mimes:jpg,png,jpeg,svg,mpeg|max:1024',
             'price' => 'required|integer',
             'amount' => 'required|integer',
         ]);
@@ -49,6 +54,7 @@ class ProductController extends Controller
         Product::query()->create([
             'title'=>$request->get('title'),
             'text'=>$request->get('text'),
+            'image'=>$path,
             'price'=>$request->get('price'),
             'amount'=>$request->get('amount'),
             'view'=>$request->get('view'),
@@ -72,7 +78,7 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param Product $product
      * @return \Illuminate\Http\Response
      */
     public function edit(Product $product)
@@ -84,14 +90,22 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param Product $product
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Product $product)
     {
+        $path = $product->image;
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->storeAs(
+                'public/image-product',$request->file('image')->getClientOriginalName()
+            );
+        }
+
         $request->validate([
             'title' => 'required|string',
             'text' => 'required|string',
+            'image' => 'required|mimes:jpg,png,jpeg,svg,mpeg|max:1024',
             'price' => 'required|integer',
             'amount' => 'required|integer',
         ]);
@@ -99,6 +113,7 @@ class ProductController extends Controller
         $product->update([
             'title'=>$request->get('title'),
             'text'=>$request->get('text'),
+            'image'=>$path,
             'price'=>$request->get('price'),
             'amount'=>$request->get('amount'),
             'view'=>$request->get('view'),
@@ -111,11 +126,12 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param Product $product
      * @return \Illuminate\Http\Response
      */
     public function destroy(Product $product)
     {
+        Storage::delete($product->image);
         $product->delete();
         alert()->success('محصول مورد نظر ایجاد شد', 'باتشکر');
         return redirect()->back();

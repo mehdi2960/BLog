@@ -11,11 +11,15 @@ class Product extends Model
 
     protected $table = 'products';
 
-    protected $fillable=['title','text','price','amount','view'];
+    protected $fillable = ['title', 'text', 'image', 'price', 'amount', 'view'];
 
     public function user()
     {
         return $this->hasMany(User::class);
+    }
 
+    public function discount()
+    {
+        return $this->hasOne(Discount::class);
     }
 }

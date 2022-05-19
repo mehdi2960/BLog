@@ -8,7 +8,7 @@
                 <div class="card card-body">
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
-                            <form action="{{route('products.store')}}" method="post">
+                            <form action="{{route('products.store')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 @include('sections.error')
                                 <div class="form-group">
@@ -18,6 +18,10 @@
                                 <div class="form-group">
                                     <label for="exampleInputEmail12">توضیحات محصول</label>
                                     <textarea class="form-control" name="text" id="" cols="30" rows="10"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail12">عکس محصول</label>
+                                    <input type="file" name="image" class="form-control" id="exampleInputEmail12">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword11">قیمت محصول</label>
