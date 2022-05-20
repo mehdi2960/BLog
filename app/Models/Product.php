@@ -28,4 +28,9 @@ class Product extends Model
     {
         return $this->morphMany(Comment::class,'commentable');
     }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
 }
