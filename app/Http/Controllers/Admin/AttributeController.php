@@ -46,7 +46,7 @@ class AttributeController extends Controller
         ]);
 
         alert()->success('ویژگی برای محصول شما ایجاد گردید','با تشکر');
-        return redirect(route('attributes'));
+        return redirect(route('attributes.index'));
     }
 
     /**
@@ -63,24 +63,33 @@ class AttributeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param Attribute $attribute
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Attribute $attribute)
     {
-        //
+        return view('dashboard.attributes.edit',compact('attribute'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param Attribute $attribute
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Attribute $attribute)
     {
-        //
+        $request->validate([
+            'name'=>'required'
+        ]);
+
+        $attribute->query()->update([
+            'name'=>$request->get('name')
+        ]);
+
+        alert()->success('ویژگی برای محصول شما ویرایش گردید','با تشکر');
+        return redirect(route('attributes.index'));
     }
 
     /**
