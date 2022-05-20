@@ -7,7 +7,7 @@
             <div class="col-xl-12 box-margin height-card">
                 <div class="card card-body">
                     <div class="row">
-                        <div class="col-sm-12 col-xs-12">
+                        <div class="col-sm-6 col-xs-6">
                             <form action="{{route('products.store')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 @include('sections.error')
@@ -18,6 +18,14 @@
                                 <div class="form-group">
                                     <label for="exampleInputEmail12">توضیحات محصول</label>
                                     <textarea class="form-control" name="text" id="" cols="30" rows="10"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail12">دسته بندی محصول</label>
+                                    <select name="categories[]" id="" multiple  class="form-control">
+                                        @foreach($categories as $category)
+                                          <option value="{{$category->id}}">{{$category->name}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail12">عکس محصول</label>

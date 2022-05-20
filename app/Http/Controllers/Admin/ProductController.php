@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -28,7 +29,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('dashboard.products.create');
+        $categories=Category::all();
+        return view('dashboard.products.create',compact('categories'));
     }
 
     /**
@@ -43,22 +45,26 @@ class ProductController extends Controller
         $path = $request->file('image')->storeAs(
             'public/image-product',$request->file('image')->getClientOriginalName()
         );
-        $request->validate([
+        $date=$request->validate([
             'title' => 'required|string',
             'text' => 'required|string',
             'image' => 'required|mimes:jpg,png,jpeg,svg,mpeg|max:1024',
             'price' => 'required|integer',
             'amount' => 'required|integer',
+            'categories' => 'required',
         ]);
 
-        Product::query()->create([
+        $product=Product::query()->create([
             'title'=>$request->get('title'),
             'text'=>$request->get('text'),
             'image'=>$path,
             'price'=>$request->get('price'),
             'amount'=>$request->get('amount'),
             'view'=>$request->get('view'),
+            'categories'=>$request->get('categories'),
         ]);
+
+        $product ->categories()->sync($date['categories']);
 
         alert()->success('محصول مورد نظر ایجاد شد', 'باتشکر');
         return redirect()->route('products.index');
