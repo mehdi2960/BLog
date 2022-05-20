@@ -21,6 +21,14 @@
                                     <textarea class="form-control" name="text" id="" cols="30" rows="10">{{$product->text}}</textarea>
                                 </div>
                                 <div class="form-group">
+                                    <label for="exampleInputEmail12">دسته بندی محصول</label>
+                                    <select name="categories[]" id="" multiple  class="form-control">
+                                        @foreach($categories as $category)
+                                            <option value="{{$category->id}}" {{in_array($category->id,$product->categories()->pluck('id')->toArray()) ? 'selected':''}}>{{$category->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label for="exampleInputEmail12">عکس محصول</label>
                                     <input type="file" name="image" class="form-control" id="exampleInputEmail12">
                                 </div>

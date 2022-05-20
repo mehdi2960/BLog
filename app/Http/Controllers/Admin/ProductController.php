@@ -89,7 +89,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('dashboard.products.edit',compact('product'));
+        $categories=Category::all();
+        return view('dashboard.products.edit',compact('product','categories'));
     }
 
     /**
@@ -108,12 +109,12 @@ class ProductController extends Controller
             );
         }
 
-        $request->validate([
+        $data=$request->validate([
             'title' => 'required|string',
             'text' => 'required|string',
-            'image' => 'required|mimes:jpg,png,jpeg,svg,mpeg|max:1024',
             'price' => 'required|integer',
             'amount' => 'required|integer',
+            'categories' => 'required',
         ]);
 
         $product->update([
@@ -123,7 +124,9 @@ class ProductController extends Controller
             'price'=>$request->get('price'),
             'amount'=>$request->get('amount'),
             'view'=>$request->get('view'),
+            'categories'=>$request->get('categories'),
         ]);
+        $product ->categories()->sync($data['categories']);
 
         alert()->success('محصول مورد نظر ویرایش شد', 'باتشکر');
         return redirect()->route('products.index');
