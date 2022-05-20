@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Attribute;
+use App\Models\AttributeValue;
 use Illuminate\Http\Request;
 
 class AttributeController extends Controller
@@ -101,6 +102,26 @@ class AttributeController extends Controller
     public function destroy(Attribute $attribute)
     {
         $attribute->delete();
+        return back();
+    }
+
+    public function getValues(Attribute $attribute)
+    {
+        $values=AttributeValue::query()->where('attribute_id',$attribute->id)->get();
+        return view('dashboard.attributes.value',compact('attribute','values'));
+    }
+
+    public function postValues(Request $request)
+    {
+        $request->validate([
+            'value'=>'required'
+        ]);
+
+        AttributeValue::query()->create([
+            'attribute_id'=>$request->get('attribute_id'),
+            'value'=>$request->get('value'),
+        ]);
+
         return back();
     }
 }

@@ -24,12 +24,13 @@
                                             <td>{{$attribute->id}}</td>
                                             <td>{{$attribute->name}}</td>
                                             <td class="d-flex">
-                                                <a class="badge badge-success" href="{{route('attributes.edit',['attribute'=>$attribute->id])}}">ویرایش</a>
                                                 <form action="{{route('attributes.destroy',['attribute'=>$attribute->id])}}" method="post">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="badge badge-danger">حذف</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm">حذف</button>
                                                 </form>
+                                                <a class="btn btn-success btn-sm" href="{{route('attributes.edit',['attribute'=>$attribute->id])}}">ویرایش</a>
+                                                <a class="btn btn-primary btn-sm" href="{{route('attribute.value',['attribute'=>$attribute->id])}}">افزودن مقدار</a>
                                             </td>
                                         </tr>
                                     @endforeach

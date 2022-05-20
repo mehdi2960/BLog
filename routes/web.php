@@ -66,11 +66,16 @@ Route::prefix('dashboard')->group(function (){
     Route::resource('/users','Admin\UserController');
     Route::resource('/products','Admin\ProductController');
     Route::resource('/product.discount','Admin\DiscountController');
+    //Comment
     Route::resource('/comments','Admin\CommentController');
     Route::get('/comments-unapproved','Admin\CommentController@unapprovedGet')->name('unapproved.get');
     Route::patch('/comments-unapproved/{comment}','Admin\CommentController@unapprovedPost')->name('unapproved.post');
+    //Category
     Route::resource('/category','Admin\CategoryController');
+    //Attribute
     Route::resource('/attributes','Admin\AttributeController');
+    Route::get('/attribute/value/{attribute}','Admin\AttributeController@getValues')->name('attribute.value');
+    Route::post('/attribute/value','Admin\AttributeController@postValues')->name('attribute.post.value');
 });
 Auth::routes();
 
