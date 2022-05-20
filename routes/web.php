@@ -65,7 +65,8 @@ Route::get('/dashboard', function () {
 Route::prefix('dashboard')->group(function (){
     Route::resource('/users','Admin\UserController');
     Route::resource('/products','Admin\ProductController');
-    Route::resource('/product.discount','admin\DiscountController');
+    Route::resource('/product.discount','Admin\DiscountController');
+    Route::resource('/comments','Admin\CommentController');
 });
 Auth::routes();
 
