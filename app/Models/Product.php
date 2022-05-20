@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Hekmatinasser\Verta\Facades\Verta;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,7 +14,7 @@ class Product extends Model
 
     protected $fillable = ['title', 'text', 'image', 'price', 'amount', 'view'];
 
-    public function user()
+    public function users()
     {
         return $this->hasMany(User::class);
     }

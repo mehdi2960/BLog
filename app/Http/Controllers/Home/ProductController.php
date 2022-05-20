@@ -16,6 +16,7 @@ class ProductController extends Controller
 
     public function singleProduct(Product $product)
     {
-        return view('home.products.single',compact('product'));
+        $comments=$product->comments()->where('approved',1)->get();
+        return view('home.products.single',compact('product','comments'));
     }
 }
