@@ -29,6 +29,13 @@
                             <li><a href="{{ route('products.create') }}" style="{{ request()->is('dashboard/products/create') ? 'color:blue' : '' }}">افزودن محصول</a></li>
                         </ul>
                     </li>
+                    <li class="treeview @php if((request()->is('dashboard/attributes')) || (request()->is('dashboard/attributes/create'))) { echo 'active';} @endphp">
+                        <a href="javascript:void(0)"><i class="zmdi zmdi-account"></i> <span>مدیریت ویژگی ها</span> <i class="fa fa-angle-left"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{ route('attributes.index') }}" style="{{ request()->is('dashboard/products') ? 'color:blue' : '' }}">لیست ویژگی ها</a></li>
+                            <li><a href="{{ route('attributes.create') }}" style="{{ request()->is('dashboard/products/create') ? 'color:blue' : '' }}">افزودن ویژگی ها</a></li>
+                        </ul>
+                    </li>
                     <li class="treeview @php if((request()->is('dashboard/users')) || (request()->is('dashboard/users/create'))) { echo 'active';} @endphp">
                         <a href="javascript:void(0)"><i class="zmdi zmdi-account"></i> <span>مدیریت کاربران</span> <i class="fa fa-angle-left"></i></a>
                         <ul class="treeview-menu">
