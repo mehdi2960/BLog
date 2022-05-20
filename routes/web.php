@@ -67,6 +67,8 @@ Route::prefix('dashboard')->group(function (){
     Route::resource('/products','Admin\ProductController');
     Route::resource('/product.discount','Admin\DiscountController');
     Route::resource('/comments','Admin\CommentController');
+    Route::get('/comments-unapproved','Admin\CommentController@unapprovedGet')->name('unapproved.get');
+    Route::patch('/comments-unapproved/{comment}','Admin\CommentController@unapprovedPost')->name('unapproved.post');
 });
 Auth::routes();
 

@@ -33,7 +33,7 @@
                         <a href="javascript:void(0)"><i class="zmdi zmdi-account"></i> <span>مدیریت نظرات</span> <i class="fa fa-angle-left"></i></a>
                         <ul class="treeview-menu">
                             <li><a href="{{ route('comments.index') }}" style="{{ request()->is('dashboard/comments') ? 'color:blue' : '' }}">لیست نظرات</a></li>
-{{--                            <li><a href="{{ route('comments.getUnapproved') }}" style="{{ request()->is('dashboard/comments/unapproved') ? 'color:blue' : '' }}">نظرات تائید نشده</a></li>--}}
+                            <li><a href="{{ route('unapproved.get') }}" style="{{ request()->is('dashboard/comments/unapproved') ? 'color:blue' : '' }}">نظرات تائید نشده</a></li>
                         </ul>
                     </li>
                 </ul>

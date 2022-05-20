@@ -85,4 +85,18 @@ class CommentController extends Controller
         $comment->delete();
         return back();
     }
+
+    public function unapprovedGet()
+    {
+        $comments=Comment::query()->where('approved',0)->get();
+        return view('dashboard.comments.unapproved',compact('comments'));
+    }
+
+    public function unapprovedPost(Request $request,$id)
+    {
+        $comment=Comment::find($id);
+        $comment->approved=1;
+        $comment->save();
+        return back();
+    }
 }
