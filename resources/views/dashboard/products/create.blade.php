@@ -73,10 +73,10 @@
                                      aria-labelledby="nav-profile-tab">
                                     @foreach($attributes as $attribute)
                                         <label for="{{$attribute->id}}">{{$attribute->name}}</label>
-                                        <select class="form-control"  name="" id="{{$attribute->id}}">
+                                        <select class="form-control"  name="attributeValues[]" id="{{$attribute->id}}">
                                             @foreach($attributeValues as $attributeValue)
                                                 @if($attribute->id==$attributeValue->attribute_id)
-                                                <option value="{{$attributeValue->id}}">{{$attributeValue->value}}</option>
+                                                <option value="{{$attribute->id}}-{{$attributeValue->id}}">{{$attributeValue->value}}</option>
                                                 @endif
                                             @endforeach
                                         </select>

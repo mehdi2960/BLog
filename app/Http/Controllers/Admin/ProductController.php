@@ -49,6 +49,9 @@ class ProductController extends Controller
         $path = $request->file('image')->storeAs(
             'public/image-product',$request->file('image')->getClientOriginalName()
         );
+
+        $attributevalues=$request->attributeValues;
+
         $date=$request->validate([
             'title' => 'required|string',
             'text' => 'required|string',
@@ -67,6 +70,13 @@ class ProductController extends Controller
             'view'=>$request->get('view'),
             'categories'=>$request->get('categories'),
         ]);
+
+        //Add Attribute For Product
+        foreach ($attributevalues as $attributevalue)
+        {
+            $attributeForProduct=explode('-',$attributevalue);
+            $product->attributes()->attach($attributeForProduct[0],['value_id'=>$attributeForProduct[1]]);
+        }
 
         $product ->categories()->sync($date['categories']);
 
