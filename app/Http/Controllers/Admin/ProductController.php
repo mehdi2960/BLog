@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Attribute;
+use App\Models\AttributeValue;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
@@ -30,7 +32,9 @@ class ProductController extends Controller
     public function create()
     {
         $categories=Category::all();
-        return view('dashboard.products.create',compact('categories'));
+        $attributes=Attribute::all();
+        $attributeValues=AttributeValue::all();
+        return view('dashboard.products.create',compact('categories','attributes','attributeValues'));
     }
 
     /**
