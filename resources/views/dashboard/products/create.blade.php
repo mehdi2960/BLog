@@ -71,16 +71,17 @@
                                 </div>
                                 <div class="tab-pane fade" id="nav-profile" role="tabpanel"
                                      aria-labelledby="nav-profile-tab">
-                                    @foreach($attributes as $attribute)
-                                        <label for="{{$attribute->id}}">{{$attribute->name}}</label>
-                                        <select class="form-control"  name="attributeValues[]" id="{{$attribute->id}}">
-                                            @foreach($attributeValues as $attributeValue)
-                                                @if($attribute->id==$attributeValue->attribute_id)
-                                                <option value="{{$attribute->id}}-{{$attributeValue->id}}">{{$attributeValue->value}}</option>
-                                                @endif
-                                            @endforeach
-                                        </select>
-                                    @endforeach
+                                        @foreach($attributes as $attribute)
+                                            <label for="{{ $attribute->id }}">{{ $attribute->name }}: </label>
+                                            <select class="form-control" name="attributeValues[]" id="{{ $attribute->id }}">
+                                                @foreach($attributeValues as $attributeValue)
+                                                    @if($attribute->id == $attributeValue->attribute_id)
+                                                        <option value="{{ $attribute->id }}-{{ $attributeValue->id }}">{{ $attributeValue->value }}</option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                            <br/>
+                                        @endforeach
                                 </div>
                             </div>
                         </div>

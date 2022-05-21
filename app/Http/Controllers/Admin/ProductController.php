@@ -46,11 +46,16 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $attributeValues = $request->attributeValues;
+//        dd($attributeValues);
+//        foreach ($attributeValues as $attributeValue){
+//            $attributeForProduct =  explode('-',$attributeValue);
+////            $attribute_value[] =
+//        }
+
         $path = $request->file('image')->storeAs(
             'public/image-product',$request->file('image')->getClientOriginalName()
         );
-
-        $attributevalues=$request->attributeValues;
 
         $date=$request->validate([
             'title' => 'required|string',
@@ -60,6 +65,15 @@ class ProductController extends Controller
             'amount' => 'required|integer',
             'categories' => 'required',
         ]);
+
+        //Image
+//        if ($request->image){
+//            $image = $request->image;
+//            $path = time() . $image->getClientOriginalName();
+//            $path = str_replace(' ', '-',$path);
+//            $image->move('storage/products/',$path);
+//            $path = 'storage/products/'.$path;
+//        }
 
         $product=Product::query()->create([
             'title'=>$request->get('title'),
@@ -71,16 +85,12 @@ class ProductController extends Controller
             'categories'=>$request->get('categories'),
         ]);
 
-        //Add Attribute For Product
-        foreach ($attributevalues as $attributevalue)
-        {
-            $attributeForProduct=explode('-',$attributevalue);
-            $product->attributes()->attach($attributeForProduct[0],['value_id'=>$attributeForProduct[1]]);
-        }
-
         $product ->categories()->sync($date['categories']);
 
+        $product->attributes()->attach($attributeForProduct[0],['value_id' => $attributeForProduct[1]]);
+
         alert()->success('محصول مورد نظر ایجاد شد', 'باتشکر');
+
         return redirect()->route('products.index');
     }
 
@@ -156,7 +166,7 @@ class ProductController extends Controller
     {
         Storage::delete($product->image);
         $product->delete();
-        alert()->success('محصول مورد نظر ایجاد شد', 'باتشکر');
+        alert()->warning('محصول مورد نظر حذف شد', 'دقت کنید');
         return redirect()->back();
     }
 }
