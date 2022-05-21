@@ -124,4 +124,29 @@ class AttributeController extends Controller
 
         return back();
     }
+
+    public function destroyValues(AttributeValue $attributeValue)
+    {
+        $attributeValue->delete();
+        return back();
+    }
+
+    public function editValues(AttributeValue $attributeValue)
+    {
+        return view('dashboard.attributes.editValues',compact('attributeValue'));
+    }
+
+    public function updateValues(Request $request,AttributeValue $attributeValue)
+    {
+        $request->validate([
+            'value'=>'required'
+        ]);
+
+        $attributeValue->update([
+            'value'=>$request->get('value')
+        ]);
+
+        alert()->success('ویژگی مقدار با موفقیت ویرایش شد','با تشکر');
+        return back();
+    }
 }

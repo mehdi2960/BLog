@@ -36,12 +36,12 @@
                                             <td>{{$value->id}}</td>
                                             <td>{{$value->value}}</td>
                                             <td class="d-flex">
-                                                <form action="{{route('attributes.destroy',['attribute'=>$attribute->id])}}" method="post">
+                                                <form action="{{route('attribute.delete.value',['attributeValue'=>$value->id])}}" method="post">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm">حذف</button>
                                                 </form>
-                                                <a class="btn btn-success btn-sm" href="{{route('attributes.edit',['attribute'=>$attribute->id])}}">ویرایش</a>
+                                                <a class="btn btn-success btn-sm" href="{{route('attribute.edit.value',['attributeValue'=>$value->id])}}">ویرایش</a>
                                             </td>
                                         </tr>
                                     @endforeach

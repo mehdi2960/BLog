@@ -76,6 +76,9 @@ Route::prefix('dashboard')->group(function (){
     Route::resource('/attributes','Admin\AttributeController');
     Route::get('/attribute/value/{attribute}','Admin\AttributeController@getValues')->name('attribute.value');
     Route::post('/attribute/value','Admin\AttributeController@postValues')->name('attribute.post.value');
+    Route::delete('/attribute/values/{attributeValue}','Admin\AttributeController@destroyValues')->name('attribute.delete.value');
+    Route::get('/attribute/values/edit/{attributeValue}','Admin\AttributeController@editValues')->name('attribute.edit.value');
+    Route::patch('/attribute/values/update/{attributeValue}','Admin\AttributeController@updateValues')->name('attribute.update.value');
 });
 Auth::routes();
 
