@@ -29,3 +29,5 @@
 <script src="/admin/js/default-assets/radar.js"></script>
 <script src="/admin/js/default-assets/dashboard-2.js"></script>
 
+@yield('script')
+

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,8 @@ class RoleController extends Controller
     public function index()
     {
         $roles=Role::all();
-        return view('dashboard.roles.index',compact('roles'));
+        $permissions=Permission::all();
+        return view('dashboard.roles.index',compact('roles','permissions'));
     }
 
     /**
@@ -43,10 +45,12 @@ class RoleController extends Controller
             'description'=>'required',
         ]);
 
-        Role::query()->create([
+        $role=Role::query()->create([
             'name'=>$request->get('name'),
             'description'=>$request->get('description'),
         ]);
+
+        $role->permissions()->sync($request->permissions);
         alert()->success('نقش مورد نظر ایجاد گردید','با تشکر');
         return redirect(route('roles.index'));
     }

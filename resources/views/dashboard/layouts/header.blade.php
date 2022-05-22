@@ -14,4 +14,6 @@
 
     <link rel="stylesheet" href="/admin/style.css">
     <script src="{{ asset('js/app.js') }}"></script>
+
+    @yield('style')
 </head>

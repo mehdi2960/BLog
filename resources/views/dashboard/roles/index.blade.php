@@ -1,4 +1,8 @@
 @extends('dashboard.layouts.master')
+@section('style')
+    <link rel="stylesheet" href="/path/to/select2.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
+@endsection
 @section('content')
     <div class="main-content">
         <!-- Basic Form area Start -->
@@ -21,7 +25,16 @@
                                     <input type="text" name="description" value="{{old('description')}}" class="form-control" id="exampleInputEmail111">
                                 </div>
 
-                                <button type="submit" class="btn btn-primary mr-2">ایجاد نقش</button>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail111">انتخاب مجوز : </label>
+                                    <select class="form-control select" name="permissions[]" multiple="multiple" id="">
+                                        @foreach($permissions as $permission)
+                                          <option value="{{$permission->id}}">{{$permission->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary mr-2">ثبت</button>
                             </form>
                         </div>
                         <div class=" col-sm-8 col-12 box-margin">
@@ -33,6 +46,7 @@
                                         <tr>
                                             <th>نام نقش</th>
                                             <th>توضیح نقش</th>
+                                            <th>نمایش مجوزها</th>
                                             <th>عملیات</th>
                                         </tr>
                                         </thead>
@@ -42,6 +56,11 @@
                                                 <td>{{$role->name}}</td>
                                                 <td>
                                                     {{$role->description}}
+                                                </td>
+                                                <td>
+                                                    @foreach($role->permissions as $permission)
+                                                        {{$permission->description}} -
+                                                    @endforeach
                                                 </td>
                                                 <td class="d-flex">
                                                     <a class="btn btn-success btn-sm" href="{{route('roles.edit',['role'=>$role->id])}}">ویرایش</a>
@@ -63,4 +82,11 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <script>
+        $('.select').select2({
+            theme: 'bootstrap4',
+        });
+    </script>
 @endsection
