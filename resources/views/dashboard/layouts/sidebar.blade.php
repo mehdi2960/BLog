@@ -56,6 +56,7 @@
                         <a href="javascript:void(0)"><i class="zmdi zmdi-account"></i> <span>سطوح دسترسی</span> <i class="fa fa-angle-left"></i></a>
                         <ul class="treeview-menu">
                             <li><a href="{{ route('permissions.index') }}" style="{{ request()->is('dashboard/products') ? 'color:blue' : '' }}">همه دسترسی ها</a></li>
+                            <li><a href="{{ route('roles.index') }}" style="{{ request()->is('dashboard/roles') ? 'color:blue' : '' }}">همه نقش ها</a></li>
                         </ul>
                     </li>
                 </ul>
