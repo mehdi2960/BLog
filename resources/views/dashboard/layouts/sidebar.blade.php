@@ -36,6 +36,7 @@
                             <li><a href="{{ route('attributes.create') }}" style="{{ request()->is('dashboard/products/create') ? 'color:blue' : '' }}">افزودن ویژگی ها</a></li>
                         </ul>
                     </li>
+                    @can('users')
                     <li class="treeview @php if((request()->is('dashboard/users')) || (request()->is('dashboard/users/create'))) { echo 'active';} @endphp">
                         <a href="javascript:void(0)"><i class="zmdi zmdi-account"></i> <span>مدیریت کاربران</span> <i class="fa fa-angle-left"></i></a>
                         <ul class="treeview-menu">
@@ -43,6 +44,7 @@
                             <li><a href="{{ route('users.create') }}" style="{{ request()->is('dashboard/users/create') ? 'color:blue' : '' }}">افزودن کاربر</a></li>
                         </ul>
                     </li>
+                    @endcan
                     @can('comments')
                     <li class="treeview @php if((request()->is('dashboard/comments')) || (request()->is('dashboard/comments/unapproved'))) { echo 'active';} @endphp">
                         <a href="javascript:void(0)"><i class="zmdi zmdi-account"></i> <span>مدیریت نظرات</span> <i class="fa fa-angle-left"></i></a>

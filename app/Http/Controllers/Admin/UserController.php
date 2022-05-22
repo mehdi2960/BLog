@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:users,user')->only(['index']);
+    }
 
     public function index()
     {
