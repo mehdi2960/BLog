@@ -22,6 +22,17 @@
                                     <input type="text" name="description" value="{{$role->description}}" class="form-control" id="exampleInputEmail111">
                                 </div>
 
+                                <div class="form-group">
+                                    <label for="exampleInputEmail111">انتخاب مجوز : </label>
+                                    <select class="form-control select" name="permissions[]" multiple="multiple" id="">
+                                        @foreach($permissions as $permission)
+                                            <option value="{{$permission->id}}" {{in_array($permission->id,$role->permissions->pluck('id')->toArray()) ? 'selected':''}}>
+                                                {{$permission->name}}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
                                 <button type="submit" class="btn btn-primary mr-2">ویرایش نقش</button>
                             </form>
                         </div>

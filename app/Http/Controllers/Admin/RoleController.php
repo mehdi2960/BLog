@@ -74,7 +74,8 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        return view('dashboard.roles.edit',compact('role'));
+        $permissions=Permission::all();
+        return view('dashboard.roles.edit',compact('role','permissions'));
     }
 
     /**
@@ -95,6 +96,7 @@ class RoleController extends Controller
             'name'=>$request->get('name'),
             'description'=>$request->get('description'),
         ]);
+        $role->permissions()->sync($request->permissions);
         alert()->success('نقش مورد نظر ویرایش گردید','با تشکر');
         return redirect(route('roles.index'));
     }
