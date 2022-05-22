@@ -37,7 +37,17 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'description'=>'required',
+        ]);
+
+        Permission::query()->create([
+            'name'=>$request->get('name'),
+            'description'=>$request->get('description'),
+        ]);
+        alert()->success('مجوز مورد نظر ایجاد گردید','با تشکر');
+        return redirect(route('permissions.index'));
     }
 
     /**
@@ -54,24 +64,34 @@ class PermissionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param Permission $permission
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Permission $permission)
     {
-        //
+        return view('dashboard.permissions.edit',compact('permission'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param Permission $permission
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Permission $permission)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'description'=>'required',
+        ]);
+
+        $permission->update([
+            'name'=>$request->get('name'),
+            'description'=>$request->get('description'),
+        ]);
+        alert()->success('مجوز مورد نظر ویرایش گردید','با تشکر');
+        return redirect(route('permissions.index'));
     }
 
     /**

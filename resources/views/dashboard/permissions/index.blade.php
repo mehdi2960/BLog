@@ -33,7 +33,6 @@
                                         <tr>
                                             <th>نام دسترسی</th>
                                             <th>توضیح دسترسی</th>
-{{--                                            <th>وضیعت</th>--}}
                                             <th>عملیات</th>
                                         </tr>
                                         </thead>
@@ -44,12 +43,12 @@
                                                 <td>
                                                     {{$permission->description}}
                                                 </td>
-                                                <td>
-                                                    <a class="badge badge-success" href="{{route('permissions.edit',['permission'=>$permission->id])}}">ویرایش</a>
+                                                <td class="d-flex">
+                                                    <a class="btn btn-success btn-sm" href="{{route('permissions.edit',['permission'=>$permission->id])}}">ویرایش</a>
                                                     <form action="{{route('permissions.destroy',['permission'=>$permission->id])}}" method="post">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" onclick="return confirm('آیا از حذف رکورد مورد نطر مطمئن هستید!')" class="badge badge-danger">حذف</button>
+                                                        <button type="submit" onclick="return confirm('آیا از حذف رکورد مورد نطر مطمئن هستید!')" class="btn btn-danger btn-sm">حذف</button>
                                                     </form>
                                                 </td>
                                             </tr>
