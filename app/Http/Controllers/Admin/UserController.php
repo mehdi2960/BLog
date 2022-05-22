@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -72,5 +73,17 @@ class UserController extends Controller
     {
         $user->delete();
         return back();
+    }
+
+    public function editRole(User $user)
+    {
+        $roles = Role::all();
+        return view('dashboard.users.role', compact('user', 'roles'));
+    }
+
+    public function updatetRole(User $user,Request $request)
+    {
+        $user->roles()->sync($request->role);
+        return redirect(route('users.index'));
     }
 }

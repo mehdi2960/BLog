@@ -82,6 +82,8 @@ Route::prefix('dashboard')->group(function (){
     //Permissions And Role
     Route::resource('/permissions','Admin\PermissionController');
     Route::resource('/roles','Admin\RoleController');
+    Route::get('users/role/{user}','Admin\UserController@editRole')->name('users.role');
+    Route::patch('users/role/{user}','Admin\UserController@updatetRole')->name('users.role.update');
 
 });
 Auth::routes();

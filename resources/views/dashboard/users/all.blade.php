@@ -53,6 +53,7 @@
                                             </td>
                                             <td style="display: flex !important;">
                                                 <a href="{{route('users.edit',['user'=>$user->id])}}" class="btn btn-primary btn-sm">ویرایش</a>
+                                                <a href="{{route('users.role',['user'=>$user->id])}}" class="btn btn-success btn-sm">دسترسی</a>
                                                 <form action="{{route('users.destroy',['user'=>$user->id])}}" method="post">
                                                     @csrf
                                                     @method('DELETE')
