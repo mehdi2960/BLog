@@ -52,6 +52,12 @@
                         </ul>
                     </li>
                     @endcan
+                    <li class="treeview @php if((request()->is('dashboard/permissions')) || (request()->is('dashboard/permissions/create'))) { echo 'active';} @endphp">
+                        <a href="javascript:void(0)"><i class="zmdi zmdi-account"></i> <span>سطوح دسترسی</span> <i class="fa fa-angle-left"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{ route('permissions.index') }}" style="{{ request()->is('dashboard/products') ? 'color:blue' : '' }}">همه دسترسی ها</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
         </div>

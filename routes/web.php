@@ -79,6 +79,9 @@ Route::prefix('dashboard')->group(function (){
     Route::delete('/attribute/values/{attributeValue}','Admin\AttributeController@destroyValues')->name('attribute.delete.value');
     Route::get('/attribute/values/edit/{attributeValue}','Admin\AttributeController@editValues')->name('attribute.edit.value');
     Route::patch('/attribute/values/update/{attributeValue}','Admin\AttributeController@updateValues')->name('attribute.update.value');
+    //Permissions
+    Route::resource('/permissions','Admin\PermissionController');
+
 });
 Auth::routes();
 
