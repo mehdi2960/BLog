@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:comments,users')->only(['index']);
+        $this->middleware('can:comments-destroy,users')->only(['destroy']);
+        $this->middleware('can:comments-unapproved,users')->only(['unapprovedGet','unapprovedPost']);
+    }
     /**
      * Display a listing of the resource.
      *

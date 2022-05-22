@@ -43,6 +43,7 @@
                             <li><a href="{{ route('users.create') }}" style="{{ request()->is('dashboard/users/create') ? 'color:blue' : '' }}">افزودن کاربر</a></li>
                         </ul>
                     </li>
+                    @can('comments')
                     <li class="treeview @php if((request()->is('dashboard/comments')) || (request()->is('dashboard/comments/unapproved'))) { echo 'active';} @endphp">
                         <a href="javascript:void(0)"><i class="zmdi zmdi-account"></i> <span>مدیریت نظرات</span> <i class="fa fa-angle-left"></i></a>
                         <ul class="treeview-menu">
@@ -50,6 +51,7 @@
                             <li><a href="{{ route('unapproved.get') }}" style="{{ request()->is('dashboard/comments/unapproved') ? 'color:blue' : '' }}">نظرات تائید نشده</a></li>
                         </ul>
                     </li>
+                    @endcan
                 </ul>
             </nav>
         </div>
