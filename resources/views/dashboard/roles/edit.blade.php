@@ -7,22 +7,22 @@
                 <div class="card card-body">
                     <div class="row">
                         <div class="col-sm-4 col-xs-4">
-                            <p> ویرایش دسترسی: </p>
-                            <form action="{{route('permissions.update',['permission'=>$permission->id])}}" method="post">
+                            <p> ویرایش نقش: </p>
+                            <form action="{{route('roles.update',['role'=>$role->id])}}" method="post">
                                 @csrf
                                 @method('PATCH')
                                 @include('sections.error')
                                 <div class="form-group">
-                                    <label for="exampleInputEmail111">نام دسترسی: </label>
-                                    <input type="text" name="name" value="{{$permission->name}}" class="form-control" id="exampleInputEmail111">
+                                    <label for="exampleInputEmail111">نام نقش: </label>
+                                    <input type="text" name="name" value="{{$role->name}}" class="form-control" id="exampleInputEmail111">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="exampleInputEmail111">توضیح دسترسی: </label>
-                                    <input type="text" name="description" value="{{$permission->description}}" class="form-control" id="exampleInputEmail111">
+                                    <label for="exampleInputEmail111">توضیح نقش: </label>
+                                    <input type="text" name="description" value="{{$role->description}}" class="form-control" id="exampleInputEmail111">
                                 </div>
 
-                                <button type="submit" class="btn btn-primary mr-2">ویرایش دسترسی</button>
+                                <button type="submit" class="btn btn-primary mr-2">ویرایش نقش</button>
                             </form>
                         </div>
                     </div>

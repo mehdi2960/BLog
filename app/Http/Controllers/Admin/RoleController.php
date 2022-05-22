@@ -32,12 +32,23 @@ class RoleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     * @param Role $role
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'description'=>'required',
+        ]);
+
+        Role::query()->create([
+            'name'=>$request->get('name'),
+            'description'=>$request->get('description'),
+        ]);
+        alert()->success('نقش مورد نظر ایجاد گردید','با تشکر');
+        return redirect(route('roles.index'));
     }
 
     /**
@@ -59,7 +70,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        //
+        return view('dashboard.roles.edit',compact('role'));
     }
 
     /**
@@ -71,7 +82,17 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'description'=>'required',
+        ]);
+
+        $role->update([
+            'name'=>$request->get('name'),
+            'description'=>$request->get('description'),
+        ]);
+        alert()->success('نقش مورد نظر ویرایش گردید','با تشکر');
+        return redirect(route('roles.index'));
     }
 
     /**
@@ -82,6 +103,7 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        //
+        $role->delete();
+        return back();
     }
 }

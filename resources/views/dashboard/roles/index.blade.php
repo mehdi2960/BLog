@@ -44,8 +44,8 @@
                                                     {{$role->description}}
                                                 </td>
                                                 <td class="d-flex">
-                                                    <a class="btn btn-success btn-sm" href="{{route('role.edit',['role'=>$role->id])}}">ویرایش</a>
-                                                    <form action="{{route('role.destroy',['role'=>$role->id])}}" method="post">
+                                                    <a class="btn btn-success btn-sm" href="{{route('roles.edit',['role'=>$role->id])}}">ویرایش</a>
+                                                    <form action="{{route('roles.destroy',['role'=>$role->id])}}" method="post">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" onclick="return confirm('آیا از حذف رکورد مورد نطر مطمئن هستید!')" class="btn btn-danger btn-sm">حذف</button>
